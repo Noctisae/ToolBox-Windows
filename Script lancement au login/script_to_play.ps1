@@ -1,3 +1,4 @@
+Start-Sleep 10
 Start-Process "Spotify.lnk"
 Start-Process "Steam.lnk"
 Start-Process "Firefox Developer Edition.lnk"
