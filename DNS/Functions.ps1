@@ -1,3 +1,4 @@
+#Fonction pour Windows Server, ne marche pas sur les Windows clients
 Function Add-DNSEntryA{
     param([String]$ZoneName="microsoft.com",
     [String]$EntryName="$env:computername",
@@ -34,7 +35,7 @@ Function Add-DNSEntryA{
 
 }
 
-
+#Fonction pour Windows Server, ne marche pas sur les Windows clients
 Function Add-DNSEntryCName{
     param([String]$ZoneName="microsoft.com",
     [String]$EntryName="$env:computername",
