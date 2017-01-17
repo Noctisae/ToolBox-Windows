@@ -13,7 +13,7 @@ if(Test-Path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"){
                 $contournement = $_.replace('\','\\');
                 if(-Not($path -match $contournement)){ 
                     $path += ";$_"
-                    [System.Environment]::SetEnvironmentVariable("PATH", $path, "User")
+                    [System.Environment]::SetEnvironmentVariable("PATH", $path, "Machine")
                 }
             }
         }
