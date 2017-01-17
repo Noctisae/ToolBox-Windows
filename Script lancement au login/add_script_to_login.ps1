@@ -9,11 +9,10 @@ if(Test-Path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"){
         [System.Environment]::SetEnvironmentVariable("PATH", $Env:Path + ";C:\ProgramData\Microsoft\Windows\Start Menu\Programs", "User")
         $folder = Get-ChildItem -recurse "C:\ProgramData\Microsoft\Windows\Start Menu\Programs" | % { $_.FullName }
         $folder | foreach-Object{
-            if((Get-Item $_) -is [System.IO.DirectoryInfo]){
-                $contournement = $_.replace('\','\\');
-                if(-Not($path -match $contournement)){ 
-                    $path += ";$_"
-                    [System.Environment]::SetEnvironmentVariable("PATH", $path, "Machine")
+            if((Get-Item $_) -is [System.IO.fileinfo]){
+                if($_ -match ".lnk"){
+                    $name = $_.Split('\')[-1];
+                    Copy-Item $_ -Destination "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$name" -Force
                 }
             }
         }
@@ -28,11 +27,10 @@ if(Test-Path "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
         [System.Environment]::SetEnvironmentVariable("PATH", $Env:Path + ";C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs", "User")
         $folder = Get-ChildItem -recurse "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs" | % { $_.FullName }
         $folder | foreach-Object{
-            if((Get-Item $_) -is [System.IO.DirectoryInfo]){
-                $contournement = $_.replace('\','\\');
-                if(-Not($path -match $contournement)){
-                    $path += ";$_"
-                    [System.Environment]::SetEnvironmentVariable("PATH", $path, "User")
+            if((Get-Item $_) -is [System.IO.fileinfo]){
+                if($_ -match ".lnk"){
+                    $name = $_.Split('\')[-1];
+                    Copy-Item $_ -Destination "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$name" -Force
                 }
             }
         }
