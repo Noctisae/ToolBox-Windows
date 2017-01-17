@@ -7,7 +7,7 @@ This tweak is composed of 2 scripts:
 	* Create a scheduled task which will trigger at all your future login. This scheduled task launch script_to_play.ps1 each time you login on your session.
 - script_to_play.ps1 can be modified to actually do what you want when you login (I personnally launch some programs like Steam or Spotify, but this script can basically play anything on login).
 
-To actually use this tweak is very simple: Open a powershell (with administrator priviledges, important !), cd to the folder where these 2 scripts are, and launch mighty Powershell at his job by typing :
+To actually use this tweak is very simple: Open a powershell (with administrator priviledges, important !), cd to the folder where these 2 scripts are, and unleash mighty Powershell by typing :
 ```
 ./add_script_to_login.ps1
 ```
