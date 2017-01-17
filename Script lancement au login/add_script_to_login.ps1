@@ -37,8 +37,13 @@ if(Test-Path "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
     }
 }
 
+$argument = ' -command "cd '
+$argument += "'"
+$argument +=  $CWD
+$argument += "'"
+$argument += '; .\script_to_play.ps1"'
 
-$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument " -WindowStyle Hidden -command '$CWD\script_to_play.ps1'"
+$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument $argument
 
 $trigger =  New-ScheduledTaskTrigger -AtLogon -User $user
 
