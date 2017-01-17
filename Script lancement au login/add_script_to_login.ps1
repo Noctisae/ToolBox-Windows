@@ -12,7 +12,9 @@ if(Test-Path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"){
             if((Get-Item $_) -is [System.IO.fileinfo]){
                 if($_ -match ".lnk"){
                     $name = $_.Split('\')[-1];
-                    Copy-Item $_ -Destination "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$name" -Force
+                    if(-Not Test-Path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$name"){
+                        Copy-Item $_ -Destination "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$name" -Force
+                    }
                 }
             }
         }
@@ -30,7 +32,9 @@ if(Test-Path "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
             if((Get-Item $_) -is [System.IO.fileinfo]){
                 if($_ -match ".lnk"){
                     $name = $_.Split('\')[-1];
-                    Copy-Item $_ -Destination "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$name" -Force
+                    if(-Not Test-Path "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$name"){
+                        Copy-Item $_ -Destination "C:\Users\$user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$name" -Force
+                    }
                 }
             }
         }
